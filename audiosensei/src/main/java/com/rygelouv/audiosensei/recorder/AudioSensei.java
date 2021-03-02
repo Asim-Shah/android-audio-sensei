@@ -173,7 +173,7 @@ public class AudioSensei
     {
         private AudioRecordInfo audioRecordInfo;
 
-        public Recorder() {
+        protected Recorder() {
             audioRecordInfo = new AudioRecordInfo();
         }
 
