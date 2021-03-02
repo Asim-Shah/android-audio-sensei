@@ -192,6 +192,11 @@ public class AudioSensei
             return this;
         }
 
+        public Recorder type(@AudioRecordInfo.AudioType int audioType){
+            this.audioRecordInfo.type = audioType;
+            return this;
+        }
+
         public void start()
         {
             if (this.audioRecordInfo.activity == null)
