@@ -33,11 +33,12 @@ import static com.rygelouv.audiosensei.recorder.AudioRecordInfo.AudioPath.PHONE_
 
 public class AudioRecordInfo
 {
-    public String extension = ".3gp";
+    protected String extension = ".mp3";
 
     public String name;
     public Activity activity;
     public @AudioPath int path;
+    public @AudioType int type;
 
     @IntDef({PHONE_PUBLIC_MUSIC, APP_PUBLIC_MUSIC, APP_PRIVATE_AUDIO,})
     @Retention(RetentionPolicy.SOURCE)
@@ -52,14 +53,37 @@ public class AudioRecordInfo
         switch (path)
         {
             case AudioPath.PHONE_PUBLIC_MUSIC:
-                return Environment.getExternalStoragePublicDirectory(DIRECTORY_MUSIC).getAbsolutePath() + File.separator + name + extension;
+                return Environment.getExternalStoragePublicDirectory(DIRECTORY_MUSIC).getAbsolutePath() + File.separator + name + getExtension();
             case AudioPath.APP_PUBLIC_MUSIC:
-                return activity.getExternalFilesDir(DIRECTORY_MUSIC).getAbsolutePath() + File.separator + name + extension;
+                return activity.getExternalFilesDir(DIRECTORY_MUSIC).getAbsolutePath() + File.separator + name + getExtension();
             case AudioPath.APP_PRIVATE_AUDIO:
-                Log.e("GAG", activity.getFilesDir().getAbsolutePath() + File.separator + "audios" + File.separator + name + extension);
-                return activity.getFilesDir().getAbsolutePath() + File.separator + "audios" + File.separator + name + extension;
+                Log.e("GAG", activity.getFilesDir().getAbsolutePath() + File.separator + "audios" + File.separator + name + getExtension());
+                return activity.getFilesDir().getAbsolutePath() + File.separator + "audios" + File.separator + name + getExtension();
             default:
-                return Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + name + extension;
+                return Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + name + getExtension();
         }
+    }
+ 
+    @IntDef({TYPE_MP3, TYPE_AAC, TYPE_3GP,})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface AudioType{
+        int TYPE_MP3 = 1;
+        int TYPE_AAC = 2;
+        int TYPE_3GP = 3;
+    }
+ 
+    private String getExtension() {
+        switch (type)
+        {
+            case AudioType.TYPE_MP3:
+                extension = ".mp3";
+            case AudioType.TYPE_AAC:
+                extension = ".aac";
+            case AudioType.TYPE_3GP:
+                extension = ".3gp";
+            default:
+                extension = ".mp3";
+        }
+        return extension;
     }
 }
