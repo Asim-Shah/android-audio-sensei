@@ -13,6 +13,9 @@ import static android.os.Environment.DIRECTORY_MUSIC;
 import static com.rygelouv.audiosensei.recorder.AudioRecordInfo.AudioPath.APP_PRIVATE_AUDIO;
 import static com.rygelouv.audiosensei.recorder.AudioRecordInfo.AudioPath.APP_PUBLIC_MUSIC;
 import static com.rygelouv.audiosensei.recorder.AudioRecordInfo.AudioPath.PHONE_PUBLIC_MUSIC;
+import static com.rygelouv.audiosensei.recorder.AudioRecordInfo.AudioType.TYPE_MP3;
+import static com.rygelouv.audiosensei.recorder.AudioRecordInfo.AudioType.TYPE_AAC;
+import static com.rygelouv.audiosensei.recorder.AudioRecordInfo.AudioType.TYPE_3GP;
 
 /**
  Created by rygelouv on 3/6/18.
